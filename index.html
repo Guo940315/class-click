@@ -73,5 +73,62 @@
             <img class="title" src="imgs/popcat.svg" alt="POPCAT">
             <div class="cat-img" id="p">0</div>
         </div>
+
+<script>
+
+    //用 javascript 預載張嘴圖片 op.png
+    const img = new Image();
+    img.src = 'imgs/op.png';
+
+    //1. 計數器初始化
+    let count = 0;
+    //將計數器顯示到 HTML 元素，用id抓取cat-img
+    const catImg = document.getElementById('p');
+    //顯示計數器
+    catImg.innerText = count;
+
+    //寫一個function 計數器累加
+    function addCount() {
+        //2. 當按下滑鼠，計數器累加
+        count++;
+    }
+
+    function updateCatImageAndPlaySound() {
+        //3.計數器累加
+        addCount();
+        //4.註冊滑鼠按下的時候，更新計數器的顯示
+        catImg.innerText = count;
+        //5.切換張嘴圖片
+        catImg.id = 'op';
+        //6.播放音效pops/pop1.mp3
+        const audio = new Audio('pops/pop1.mp3');
+        audio.play();
+    }
+
+    //當滑鼠按下切換張嘴圖片，放開便恢復原來圖片
+    //註冊滑鼠按下事件
+    document.addEventListener('mousedown', function (){
+        updateCatImageAndPlaySound();
+    })
+
+    //除了滑鼠，也可以用鍵盤互動
+    //註冊鍵盤按下事件
+    document.addEventListener('keydown', function (){
+        updateCatImageAndPlaySound();
+    })
+
+    //鍵盤放開的時候，恢復原來圖片
+    document.addEventListener('keyup', function (){
+        catImg.id = 'p';
+    })
+
+    //放開便恢復原來圖片
+    document.addEventListener('mouseup', function (){
+        catImg.id = 'p';
+    })
+
+
+</script>
+
 </body>
 </html>
